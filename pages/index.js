@@ -1,10 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { useRouter } from "next/router";
 
 export default function Home() {
-  var router = useRouter();
-  var id = router.query["id"];
   return (
     <div className={styles.container}>
       <Head>
@@ -18,12 +15,17 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          A Decentralized URL Shortener {router.pathname}
+          A Decentralized URL Shortener
         </p>
 
         <p className={styles.description}>
           <code>Your URLs will never die. They'll always exist on the blockchain!</code>
         </p>
+
+        <form className={styles.urlForm} action="/api/url" method="post">
+            <input type="text" className={styles.lineInput} name="url" placeholder="Your URL" required />
+            <button type="submit" className={styles.submit}>Shorten!</button>
+        </form>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>

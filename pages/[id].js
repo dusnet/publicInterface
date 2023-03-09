@@ -164,7 +164,7 @@ Page.getInitialProps = async function({query}) {
   var id = query["id"];
   const web3 = new Web3("https://alfajores-forno.celo-testnet.org");
 
-  var MyContract = new web3.eth.Contract(abi, "0xb6C90Eb146D031B32827bBacc8392B902BeFba03");
+  var MyContract = new web3.eth.Contract(abi, "0x5f4CE13F55b2698f0Ee402fFcE4805fC0f6748fb");
 
   // var id = router.asPath.substring(1);
   var url = "N/A";
