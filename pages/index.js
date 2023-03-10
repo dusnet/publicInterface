@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import 'bootstrap/dist/css/bootstrap.css'
-import Web3 from "web3";
+import Router from "next/router";
 
 const abi = [
 	{
@@ -67,43 +67,53 @@ const abi = [
 	}
 ];
 
+var urlId = "N/A";
+var successDisplayValue = "none";
+var submitDisplayValue = "block";
 var loadingDisplayValue = "none";
 
 const handleSubmit = async (event) => {
-    loadingDisplayValue = "block";
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault()
+  submitDisplayValue = "none";
+  loadingDisplayValue = "block";
+  Router.replace(Router.asPath);
+  // Stop the form from submitting and refreshing the page.
+  event.preventDefault()
 
-    // Get data from the form.
-    const data = {
-      url: event.target.url.value,
-    }
+  // Get data from the form.
+  const data = {
+    url: event.target.url.value,
+  }
 
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data)
+  // Send the data to the server in JSON format.
+  const JSONdata = JSON.stringify(data)
 
-    // API endpoint where we send form data.
-    const endpoint = '/api/url'
+  // API endpoint where we send form data.
+  const endpoint = '/api/url'
 
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: 'POST',
-      // Tell the server we're sending JSON.
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    }
+  // Form the request for sending data to the server.
+  const options = {
+    // The method is POST because we are sending data.
+    method: 'POST',
+    // Tell the server we're sending JSON.
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Body of the request is the JSON data we created above.
+    body: JSONdata,
+  }
 
-    // Send the form data to our forms API on Vercel and get a response.
-    const response = await fetch(endpoint, options)
+  // Send the form data to our forms API on Vercel and get a response.
+  const response = await fetch(endpoint, options)
 
-    // Get the response data from server as JSON.
-    // If server returns the name submitted, that means the form works.
-    const result = await response.json()
-    alert(`Is this your full name: ${result.data}`)
+  // Get the response data from server as JSON.
+  // If server returns the name submitted, that means the form works.
+  const result = await response.json()
+  urlId = result.data;
+
+  successDisplayValue = "block";
+  submitDisplayValue = "block";
+  loadingDisplayValue = "none";
+  Router.replace(Router.asPath);
 }
 
 export default function Home() {
@@ -129,12 +139,17 @@ export default function Home() {
         </p>
         
         <br></br>
+        <div className={styles.urlForm} style={{display: successDisplayValue}}>
+          <div className="alert alert-success alert-dismissible fade show" role="alert">
+            Your shortened URL is available at: <a href={"http://localhost:3000/"+urlId} target="_blank"><strong>http://localhost:3000/{urlId}</strong></a>
+          </div>
+        </div>
 
         <form className={styles.urlForm} onSubmit={handleSubmit}>
           <input type="text" name="url" className="form-control" placeholder="Your URL" style={{textAlign: "center"}} required></input>
           <br></br>
           <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Shorten!</button>
+            <button type="submit" className="btn btn-primary" style={{display: submitDisplayValue}}>Shorten!</button>
             <button className="btn btn-primary" type="button" style={{display: loadingDisplayValue}} disabled>
               <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
               Processing...

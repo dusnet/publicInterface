@@ -82,7 +82,7 @@ export default async function handler(req, res) {
     var id = "c" + await shortenURL(body.url);
     // Found the name.
     // Sends a HTTP success code
-    res.status(200).json({ data: `/${id}` })
+    res.status(200).json({ data: `${id}` })
 }
 
 async function shortenURL(url){
