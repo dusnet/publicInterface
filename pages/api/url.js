@@ -79,10 +79,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ data: 'First or last name not found' })
     }
     
-    shortenURL(body.url);
+    var id = "c" + await shortenURL(body.url);
     // Found the name.
     // Sends a HTTP success code
-    res.status(200).json({ data: `${body.url}` })
+    res.status(200).json({ data: `/${id}` })
 }
 
 async function shortenURL(url){
@@ -105,9 +105,9 @@ async function shortenURL(url){
 
     var MyContract = new web3.eth.Contract(abi, "0x5f4CE13F55b2698f0Ee402fFcE4805fC0f6748fb");
 
-    var dt = await MyContract.methods.setURL(id, url).send({from: acc.address, gasLimit: 3000000});
+    var dt = await MyContract.methods.setURL(id, url).send({from: acc.address, gasLimit: 300000});
     console.log(dt);
-
+    return id;
 }
 
 function generateId(length) {
