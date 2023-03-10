@@ -3,71 +3,8 @@ import styles from '../styles/Home.module.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import Router from "next/router";
 
-const abi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "givenId",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "givenURL",
-				"type": "string"
-			}
-		],
-		"name": "setURL",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "givenId",
-				"type": "string"
-			}
-		],
-		"name": "getURL",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "url",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"name": "ids",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "url",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isValue",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
-
 var urlId = "N/A";
+var shortURL = "N/A";
 var successDisplayValue = "none";
 var submitDisplayValue = "block";
 var loadingDisplayValue = "none";
@@ -110,6 +47,13 @@ const handleSubmit = async (event) => {
   const result = await response.json()
   urlId = result.data;
 
+  const origin =
+      typeof window !== 'undefined' && window.location.origin
+          ? window.location.origin
+          : '';
+
+  shortURL = origin + "/" + urlId;
+
   successDisplayValue = "block";
   submitDisplayValue = "block";
   loadingDisplayValue = "none";
@@ -141,7 +85,7 @@ export default function Home() {
         <br></br>
         <div className={styles.urlForm} style={{display: successDisplayValue}}>
           <div className="alert alert-success alert-dismissible fade show" role="alert">
-            Your shortened URL is available at: <a href={"http://localhost:3000/"+urlId} target="_blank"><strong>http://localhost:3000/{urlId}</strong></a>
+            Your shortened URL is available at: <a href={shortURL} target="_blank"><strong>{shortURL}</strong></a>
           </div>
         </div>
 
@@ -157,61 +101,7 @@ export default function Home() {
           </div>
         </form>
 
-        {/* <form className={styles.urlForm} action="/api/url" method="post">
-            <input type="text" className={styles.lineInput} name="url" placeholder="Your URL" required />
-            <button type="submit" className={styles.submit}>Shorten!</button>
-        </form> */}
-
       </main>
-
-      {/* <main>
-        <h1 className={styles.title}>
-          DUS
-        </h1>
-
-        <p className={styles.description}>
-          A Decentralized URL Shortener
-        </p>
-
-        <p className={styles.description}>
-          <code>Your URLs will never die. They'll always exist on the blockchain!</code>
-        </p>
-
-        <form className={styles.urlForm} onSubmit={handleSubmit}>
-            <input type="text" className={styles.lineInput} name="url" placeholder="Your URL" required />
-            <button type="submit" className={styles.submit}>Shorten!</button>
-        </form>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main> */}
 
       <footer>
         <a href="https://zao.dev">
