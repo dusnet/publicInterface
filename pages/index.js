@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import Router from "next/router";
+import { useQRCode } from 'next-qrcode';
 
 var urlId = "N/A";
 var shortURL = "N/A";
@@ -61,6 +62,8 @@ const handleSubmit = async (event) => {
 }
 
 export default function Home() {
+  const { Canvas } = useQRCode();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -86,7 +89,20 @@ export default function Home() {
         <div className={styles.urlForm} style={{display: successDisplayValue}}>
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             Your shortened URL is available at: <a href={shortURL} target="_blank"><strong>{shortURL}</strong></a>
+            <p></p>
+            <p>Additionally, a QR code for the generated shortened URL is provided below: </p>
           </div>
+          <center>
+            <Canvas
+              text={shortURL}
+              options={{
+                level: 'M',
+                margin: 3,
+                scale: 4,
+                width: 200,
+              }}
+            />
+          </center>
         </div>
 
         <form className={styles.urlForm} onSubmit={handleSubmit}>
