@@ -68,8 +68,8 @@ const abi = [
 // const web3 = new Web3("https://alfajores-forno.celo-testnet.org");
 // const DUSContract = new web3.eth.Contract(abi, "0x5f4CE13F55b2698f0Ee402fFcE4805fC0f6748fb");
 
-const web3 = new Web3("https://rpc-mumbai.maticvigil.com");
-const DUSContract = new web3.eth.Contract(abi, "0x0c5Fe69F68bd2F2d9464729e23F005F67b579736");
+const web3 = new Web3("https://polygon-rpc.com");
+const DUSContract = new web3.eth.Contract(abi, "0xa4e031Cddf9BF145f331d1A21eB9cC5290452cdc");
 
 /**
  * Returns the URL based on a given id
