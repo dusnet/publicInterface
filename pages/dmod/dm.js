@@ -64,8 +64,12 @@ const abi = [
 	}
 ];
 
-const web3 = new Web3("https://alfajores-forno.celo-testnet.org");
-const DUSContract = new web3.eth.Contract(abi, "0x5f4CE13F55b2698f0Ee402fFcE4805fC0f6748fb");
+// For CELO NETWORK
+// const web3 = new Web3("https://alfajores-forno.celo-testnet.org");
+// const DUSContract = new web3.eth.Contract(abi, "0x5f4CE13F55b2698f0Ee402fFcE4805fC0f6748fb");
+
+const web3 = new Web3("https://rpc-mumbai.maticvigil.com");
+const DUSContract = new web3.eth.Contract(abi, "0x0c5Fe69F68bd2F2d9464729e23F005F67b579736");
 
 /**
  * Returns the URL based on a given id
@@ -94,7 +98,7 @@ async function shortenURL(url){
     // Ensure the ID is unique and not taken by another URL in the contract
     while (id == "N/A"){
         id = generateId(6);
-        if (await getURL("c" + id) != "N/A"){
+        if (await getURL("p" + id) != "N/A"){
             id = "N/A";
         }
     }
@@ -106,7 +110,7 @@ async function shortenURL(url){
 
     await DUSContract.methods.setURL(id, url).send({from: acc.address, gasLimit: 300000});
 
-    return "c" + id;
+    return "p" + id;
 }
 
 /**
