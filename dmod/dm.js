@@ -28,7 +28,7 @@ async function getURL(id){
 /**
  * This function shortens a URL. It generates a random ID for the URL, records the ID in the smart contract, and then returns that id.
  * This function does ensure that the ID that is generated is unique. Note that the generated id will always start with "c" since this URL
- * is currently stored in the Celo network.
+ * is currently stored in the Polygon network.
  * @param {string} url The URL to be shortened 
  * @return {Promise<string>} The shortened URL's id
  */
