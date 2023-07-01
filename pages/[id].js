@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import {useEffect} from 'react'
-const DM = require("./dmod/index.js");
+const DM = require("../dmod/index.js");
 
 function Page({params}) {
   if (params[0] == "redirect"){

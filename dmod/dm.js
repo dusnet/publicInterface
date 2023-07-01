@@ -1,4 +1,9 @@
 import Web3 from "web3";
+var accounts = {
+    "acc1": "free",
+    "acc2": "free",
+    "acc3": "free"
+};
 
 const abi = [
 	{
@@ -77,6 +82,7 @@ const DUSContract = new web3.eth.Contract(abi, "0xa4e031Cddf9BF145f331d1A21eB9cC
  * @return {Promise<string>} The URL for the given ID is returned. If the ID is invalid, "N/A" is returned.
  */
 async function getURL(id){
+	// console.log(await web3.eth.getGasPrice().then(console.log));
     try {
         var url = await DUSContract.methods.getURL(id).call();
         return url;
@@ -95,6 +101,12 @@ async function getURL(id){
 async function shortenURL(url){
     var id = "N/A";
 
+	var agent = getFreeAgent();
+	accounts[agent] = "locked";
+	if (agent == "N/A"){
+		return "N/A";
+	}
+
     // Ensure the ID is unique and not taken by another URL in the contract
     while (id == "N/A"){
         id = generateId(6);
@@ -102,15 +114,63 @@ async function shortenURL(url){
             id = "N/A";
         }
     }
-
-    var acc = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+	var privateKey = getPrivateFromAgent(agent);
+	console.log(privateKey);
+	console.log(agent);
+	console.log(process.env.ACCOUNT1)
+    var acc = web3.eth.accounts.privateKeyToAccount(privateKey);
     web3.eth.accounts.wallet.add(acc);
-    web3.eth.defaultAccount = acc.address; // Do we need this line?
+    web3.eth.defaultAccount = acc.address;
 
+	// const gasPrice = signer.gasPrice();
+	
+	// const gasLimit = DUSContract.estimateGas.setURL(id, url);
+	DUSContract.methods.setURL(id, url).estimateGas(
+        {
+            from: acc.address
+        }, function(error, estimatedGas) {
+			console.log(estimatedGas);
+        }
+    );
+	console.log("SDDD_________");
+	// console.log(gasLimit);
+	console.log(await web3.eth.getGasPrice());
 
-    await DUSContract.methods.setURL(id, url).send({from: acc.address, gasLimit: 300000});
+    await DUSContract.methods.setURL(id, url).send({from: acc.address, gas: 227079, gasPrice: 194219599216});
+	
+	accounts[agent] = "free";
 
     return "p" + id;
+}
+
+/**
+ * Retireves a free agent.
+ * @return {string} Returns the agent account number "acc1" or returns "N/A" meaning there are no free agents.
+ */
+function getFreeAgent(){
+	var keys = Object.keys(accounts);
+	for (var i = 0; i < keys.length; i++){
+		if (accounts[keys[i]] == "free"){
+			return keys[i];
+		}
+	}
+	return "N/A";
+}
+
+/**
+ * Retireves the private key of a given agent.
+ * @param {string} agent The account number "acc1"
+ * @returns {string} Returns the private key or "N/A" if the account is not found
+ */
+function getPrivateFromAgent(agent){
+	if (agent == "acc1"){
+		return process.env.ACCOUNT1;
+	} else if (agent == "acc2"){
+		return process.env.ACCOUNT2;
+	} else if (agent == "acc3"){
+		return process.env.ACCOUNT3;
+	}
+	return "N/A";
 }
 
 /**

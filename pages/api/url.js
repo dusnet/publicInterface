@@ -1,4 +1,4 @@
-const DM = require("../dmod/index.js");
+const DM = require("../../dmod/index.js");
 
 
 export default async function handler(req, res) {

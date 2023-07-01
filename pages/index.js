@@ -7,6 +7,7 @@ import { useQRCode } from 'next-qrcode';
 var urlId = "N/A";
 var shortURL = "N/A";
 var successDisplayValue = "none";
+var errorDisplayValue = "none";
 var submitDisplayValue = "block";
 var loadingDisplayValue = "none";
 
@@ -52,10 +53,14 @@ const handleSubmit = async (event) => {
       typeof window !== 'undefined' && window.location.origin
           ? window.location.origin
           : '';
+  
+  if (urlId != "N/A"){
+    shortURL = origin + "/" + urlId;
+    successDisplayValue = "block";
+  } else {
+    errorDisplayValue = "block";
+  }
 
-  shortURL = origin + "/" + urlId;
-
-  successDisplayValue = "block";
   submitDisplayValue = "block";
   loadingDisplayValue = "none";
   Router.replace(Router.asPath);
@@ -103,6 +108,11 @@ export default function Home() {
               }}
             />
           </center>
+        </div>
+        <div className={styles.urlForm} style={{display: errorDisplayValue}}>
+          <div className="alert alert-danger alert-dismissible fade show" role="alert">
+            There's currently a high demand on our active agents. Try again later or use DUS.network to pay for your own gas fees.
+          </div>
         </div>
 
         <form className={styles.urlForm} onSubmit={handleSubmit}>
