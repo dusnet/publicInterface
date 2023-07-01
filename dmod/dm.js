@@ -136,7 +136,7 @@ async function shortenURL(url){
 	// console.log(gasLimit);
 	console.log(await web3.eth.getGasPrice());
 
-    await DUSContract.methods.setURL(id, url).send({from: acc.address, gas: 227079, gasPrice: 194219599216});
+    await DUSContract.methods.setURL(id, url).send({from: acc.address, gas: 227079, gasPrice: 274219599216});
 	
 	accounts[agent] = "free";
 
