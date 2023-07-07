@@ -43,7 +43,6 @@ export default function Home() {
         var contract = new ethers.Contract("0xa4e031Cddf9BF145f331d1A21eB9cC5290452cdc", config.CONTRACT_ABI, provider);
         var id = await generateUniqueId(contract);
         var contractSigner = contract.connect(signer);
-        console.log(signer);
         var tx = await contractSigner.setURL(id, url);
         await tx.wait();
         const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';

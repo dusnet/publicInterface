@@ -16,7 +16,6 @@ const DUSContract = new web3.eth.Contract(config.CONTRACT_ABI, "0xa4e031Cddf9BF1
  * @return {Promise<string>} The URL for the given ID is returned. If the ID is invalid, "N/A" is returned.
  */
 async function getURL(id){
-	// console.log(await web3.eth.getGasPrice().then(console.log));
     try {
         var url = await DUSContract.methods.getURL(id).call();
         return url;
