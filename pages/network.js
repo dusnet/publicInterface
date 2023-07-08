@@ -56,7 +56,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          A Decentralized URL Shortener - Built On Polygon
+          A Nonprofit Decentralized URL Shortener - Built On Polygon
         </p>
 
         <p className={styles.description}>
@@ -101,9 +101,10 @@ export default function Home() {
       </main>
 
       <footer>
-        <a href="https://zao.dev">
-          Powered By ZAO
-        </a>
+          <p style={{color: 'grey'}}>Donate @ 0xE749Ab474583622531d4d996F41035BbC6411891</p>
+          <a href="https://zao.dev" target='_blank'>
+            Powered By ZAO
+          </a>
       </footer>
 
       <style jsx>{`
@@ -119,7 +120,7 @@ export default function Home() {
           width: 100%;
           height: 100px;
           border-top: 1px solid #eaeaea;
-          display: flex;
+        //   display: flex;
           justify-content: center;
           align-items: center;
         }
@@ -133,6 +134,13 @@ export default function Home() {
           text-decoration: none;
           color: inherit;
         }
+        footer p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+          }
         code {
           background: #fafafa;
           border-radius: 5px;

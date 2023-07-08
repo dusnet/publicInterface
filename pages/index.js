@@ -83,7 +83,7 @@ export default function Home() {
           </h1>
 
           <p className={styles.description}>
-            A Decentralized URL Shortener
+            A Nonprofit Decentralized URL Shortener
           </p>
 
           <p className={styles.description}>
@@ -129,11 +129,11 @@ export default function Home() {
           <br></br>
           <br></br>
           <a style={{display: 'flex', justifyContent: 'right', paddingRight: 20, paddingTop: 10, color: 'grey', textDecoration: 'none'}} href="/network">Pay Your Own Fees For Better Speed</a>
-      
 
         </main>
 
         <footer>
+          <p style={{color: 'grey'}}>Donate @ 0xE749Ab474583622531d4d996F41035BbC6411891</p>
           <a href="https://zao.dev" target='_blank'>
             Powered By ZAO
           </a>
@@ -152,7 +152,7 @@ export default function Home() {
             width: 100%;
             height: 75px;
             border-top: 1px solid #eaeaea;
-            display: flex;
+            // display: flex;
             justify-content: center;
             align-items: center;
           }
@@ -160,6 +160,13 @@ export default function Home() {
             margin-left: 0.5rem;
           }
           footer a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+          }
+          footer p {
             display: flex;
             justify-content: center;
             align-items: center;
