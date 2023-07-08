@@ -87,7 +87,7 @@ export default function Home() {
         <br></br>
         <button onClick={handleConnect} className="btn btn-primary" style={{display: signer ? "none" : "block"}}>Connect Wallet</button>
         <div className={styles.urlForm} style={{display: signer ? "block" : "none"}}>
-            <input type="text" name="url" value={url} onChange={e => { setURL(e.currentTarget.value); }} className="form-control" placeholder="Your URL" style={{textAlign: "center"}} required></input>
+            <input type="url" name="url" value={url} onChange={e => { setURL(e.currentTarget.value); }} className="form-control" placeholder="Your URL" style={{textAlign: "center"}} required></input>
             <br></br>
             <div className="d-grid gap-2">
                 <button type="submit" className="btn btn-primary" style={{display: formVals.loading ? "none" : "block"}} onClick={handleSubmit}>Shorten!</button>

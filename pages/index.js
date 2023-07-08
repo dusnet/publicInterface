@@ -116,7 +116,7 @@ export default function Home() {
           </div>
 
           <form className={styles.urlForm} onSubmit={handleSubmit}>
-            <input type="text" name="url" className="form-control" placeholder="Your URL" style={{textAlign: "center"}} required></input>
+            <input type="url" name="url" className="form-control" placeholder="Your URL" style={{textAlign: "center"}} required></input>
             <br></br>
             <div className="d-grid gap-2">
               <button type="submit" className="btn btn-primary" style={{display: submitDisplayValue}}>Shorten!</button>
