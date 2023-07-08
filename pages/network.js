@@ -2,18 +2,9 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import React, { useState, useEffect } from 'react'
-import Web3 from 'web3';
 import { ethers } from "ethers";
 const config = require("../config.js");
-import Router from "next/router";
 import { useQRCode } from 'next-qrcode';
-
-var urlId = "N/A";
-var shortURL = "N/A";
-var successDisplayValue = "none";
-var errorDisplayValue = "none";
-var submitDisplayValue = "block";
-var loadingDisplayValue = "none";
 
 export default function Home() {
     const { Canvas } = useQRCode();
