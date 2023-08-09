@@ -1,3 +1,4 @@
+const CONTRACT_ADDRESS = "0x34f39Ad45Bc6C117A6C8480ef8540092868eA913";
 const CONTRACT_ABI = [
 	{
 		"inputs": [
@@ -62,4 +63,4 @@ const CONTRACT_ABI = [
 	}
 ];
 
-module.exports = { CONTRACT_ABI };
+module.exports = { CONTRACT_ADDRESS, CONTRACT_ABI };

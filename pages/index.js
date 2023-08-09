@@ -44,7 +44,7 @@ export default function Home() {
     
     const handleSubmit = async () => {
         setFormVals({success: false, url: "N/A", qr: false, loading: true});
-        var contract = new ethers.Contract("0xa4e031Cddf9BF145f331d1A21eB9cC5290452cdc", config.CONTRACT_ABI, provider);
+        var contract = new ethers.Contract(config.CONTRACT_ADDRESS, config.CONTRACT_ABI, provider);
         var id = await generateUniqueId(contract);
         var contractSigner = contract.connect(signer);
         var tx = await contractSigner.setURL(id, url);

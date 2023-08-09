@@ -3,7 +3,7 @@ import Web3 from "web3";
 const config = require("../config.js");
 
 const web3 = new Web3("https://polygon-rpc.com");
-const DUSContract = new web3.eth.Contract(config.CONTRACT_ABI, "0xa4e031Cddf9BF145f331d1A21eB9cC5290452cdc");
+const DUSContract = new web3.eth.Contract(config.CONTRACT_ABI, config.CONTRACT_ADDRESS);
 
 /**
  * Returns the URL based on a given id
