@@ -96,7 +96,7 @@ export default function Home() {
           </center>
         </div>
 
-        <p style={{display: provider ? "none" : "block"}}>We couldn't detect a web3 wallet. You can download <a href="https://metamask.io/" target="_blank" >MetMask</a> to get started!</p>
+        <p style={{display: provider ? "none" : "block", textAlign: "center"}}>We couldn't detect a web3 wallet. You can download <a href="https://metamask.io/" target="_blank" >MetMask</a> to get started!</p>
         <br></br>
         <button onClick={handleConnect} className="btn btn-primary" style={{display: signer ? "none" : "block"}}>Connect Wallet</button>
         <div className={styles.urlForm} style={{display: signer ? "block" : "none"}}>
