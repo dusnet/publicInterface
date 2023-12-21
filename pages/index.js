@@ -25,7 +25,7 @@ export default function Home() {
         try {
           await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: "0x89"}],
+            params: [{ chainId: "0x89"}], // Polygon Chain
           });
           setSigner(s);
         } catch (e){
