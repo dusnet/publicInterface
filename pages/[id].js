@@ -16,7 +16,7 @@ function Page({params}) {
     return (
       <div className={styles.container}>
         <Head>
-          <title>DUS</title>
+          <title>DUS - A Decentralized URL Shortener</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
   
@@ -32,8 +32,9 @@ function Page({params}) {
         </main>
   
         <footer>
-          <a href="https://zao.dev">
-            Powered By ZAO
+          <p></p>
+          <a href="https://maymandi.com">
+            Powered By Maymandi Labs
           </a>
         </footer>
   
@@ -48,7 +49,7 @@ function Page({params}) {
           }
           footer {
             width: 100%;
-            height: 100px;
+            height: 60px;
             border-top: 1px solid #eaeaea;
             display: flex;
             justify-content: center;

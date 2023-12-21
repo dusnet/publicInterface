@@ -114,9 +114,9 @@ export default function Home() {
       </main>
 
       <footer>
-          <p style={{color: 'grey'}}>Donate @ 0xE749Ab474583622531d4d996F41035BbC6411891</p>
-          <a href="https://zao.dev" target='_blank'>
-            Powered By ZAO
+        <p></p>
+          <a href="https://maymandi.com" target='_blank'>
+            Powered By Maymandi Labs
           </a>
       </footer>
 
@@ -131,7 +131,7 @@ export default function Home() {
         }
         footer {
           width: 100%;
-          height: 100px;
+          height: 60px;
           border-top: 1px solid #eaeaea;
         //   display: flex;
           justify-content: center;
