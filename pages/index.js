@@ -69,11 +69,11 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          A Nonprofit Decentralized URL Shortener - Built On Polygon
+          An Open Source Decentralized URL Shortener - Built On Polygon
         </p>
 
-        <p className={styles.description}>
-          <code>Your URLs will never die. They'll always exist on the blockchain!</code>
+        <p className={styles.headtext}>
+          Your URLs will never die. They'll always exist on the blockchain!
         </p>
         
         <br></br>
@@ -116,7 +116,7 @@ export default function Home() {
       <footer>
         <p></p>
           <a href="https://maymandi.com" target='_blank'>
-            Powered By Maymandi Labs
+            Built With ❤️ By Maymandi Labs
           </a>
       </footer>
 

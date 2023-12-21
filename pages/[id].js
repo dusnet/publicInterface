@@ -34,7 +34,7 @@ function Page({params}) {
         <footer>
           <p></p>
           <a href="https://maymandi.com">
-            Powered By Maymandi Labs
+            Built With ❤️ By Maymandi Labs
           </a>
         </footer>
   
